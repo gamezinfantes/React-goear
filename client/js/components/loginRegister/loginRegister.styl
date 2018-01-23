@@ -1,0 +1,59 @@
+
+.login-register-wrap
+  background rgba(0,0,0,0.7)
+  // bottom 0
+  // left 80px
+  // position absolute
+  // right 300px
+  // text-align center
+  // top 0
+  // z-index 10
+
+.login-register
+  bodyGradient()
+  box-sizing border-box
+  padding 1.5em
+  position relative
+  width 300px
+
+  & > div
+    display none
+
+  input
+    box-sizing border-box
+    display block
+    margin 0.7em 0
+    width 100%
+  p
+    margin 0.7em 0
+    &:last-child
+      margin 0
+  .btn
+    display block
+    margin 0.7em 0
+    text-align center
+    &.fb
+      background rgb(69, 104, 178)
+      color #fff
+  .separator
+    color $fontColor
+    height 1.4em
+    position relative
+    text-align center
+    hr
+      border-color $dividerColor
+      margin-top -1px
+      position absolute
+      top 50%
+      width 100%
+    .text
+      background #fff
+      display none
+      line-height 1.4em
+      padding 0.2em 0.5em
+      position relative
+      z-index 1
+  .showing
+    display block
+  .terms
+    font-size 0.8em

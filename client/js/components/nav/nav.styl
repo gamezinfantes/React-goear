@@ -1,0 +1,86 @@
+nav.main-nav
+  background-color rgb(13, 26, 33)
+  bottom 0px
+  left 0
+  position fixed
+  top 0
+  width 80px
+  z-index 95
+
+  ul
+    margin 0
+    padding 0
+    text-align center
+
+    li a
+      color $fontColor
+      display block
+      padding 1em
+      text-decoration none
+      &:hover
+        color $primaryColor
+        text-decoration none
+
+      i
+        display block
+        font-size 1.5em
+      span
+        display block
+        font-size .8em
+
+      &.login
+        color #fff
+        margin 1em 0.5em
+        padding 0.5em 1em
+        text-align center
+        
+  .no-image-user
+    display inline-block
+    font-size 1em
+
+.user-status
+  border-top 1px solid $dividerColor
+  bottom 0
+  font-size 14px
+  padding 0
+  position absolute
+  width 80px
+
+.logo
+  background url('~client/img/logo.png') no-repeat center
+  background-size cover
+  cursor pointer
+  display block
+  margin 25% 15%
+  padding-top 70%
+  width 70%
+
+
+
+@media $med_and_down
+  #app-wrapper
+    nav.main-nav
+      top $headerHeight
+      transform translate3d(-320px, 0, 0)
+      transition transform 0.1s ease-out
+      width 300px
+      &.show
+        transform translate3d(0, 0, 0)
+        transition transform 0.3s ease-out
+      li a
+        padding-left 3em
+        text-align left
+        span
+          display inline-block
+          font-size 1em
+          vertical-align bottom
+        i
+          display inline-block
+          font-size 1.2em
+          margin-right .6em
+          vertical-align bottom
+      .login
+        display none
+      .user-status
+        display none
+        text-align center

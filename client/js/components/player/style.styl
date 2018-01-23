@@ -1,0 +1,341 @@
+// @import '~'
+// @import 'nib'
+
+$miniPlayerHeight = 52px
+
+.player
+  flex 0 1 auto
+  position relative
+
+  //player controlls
+  .controls
+    padding 0em
+    font-size 1.2em
+    i
+      cursor pointer
+      &:hover
+        color #fff
+
+    .playback
+      font-size 2em
+      margin 0 0.5em
+      vertical-align middle
+      i
+        margin 0 0.1em
+      .icon-play, .icon-pause
+        border-radius 50%
+        border 2px solid $fontColor
+        padding .2em
+        position relative
+        &:hover
+          border-color $primaryColor
+    .active
+      color $primaryColor
+      &:hover
+        color $primaryColorLight
+
+  // Disc image
+  .cover
+    background-repeat no-repeat
+    background-color $dividerColor
+    background-size cover
+    display inline-block
+    height 0
+    padding-top 100%
+    width 100%
+
+
+  /*
+  *  Show title and artist
+  */
+  .info
+    font-size .9em
+    margin-top 1em
+    text-align center
+    span
+      display block
+      &.title
+        font-size 1.2em
+
+  .player-header
+    display none
+    height $headerHeight
+    line-height $headerHeight
+    position relative
+    .down
+      cursor pointer
+      font-size 1em
+      padding 0 1em
+      &:before
+        content ''
+        border-bottom 2px solid $fontColor
+        border-right 2px solid $fontColor
+        display inline-block
+        height 1em
+        transform rotate(45deg)
+        width 1em
+    .list
+      cursor pointer
+      font-size 1.3em
+      line-height $headerHeight
+      padding 0 1em
+      position absolute
+      right 0
+
+  .player-content
+    padding 1.5em
+    text-align center
+
+  .time-marker
+    text-align left
+    position relative
+    .duration
+      float right
+
+
+/*
+*  control curret position of the audio the track
+*/
+.progress-bar
+  background #444
+  background-clip content-box
+  border-radius 5px
+  cursor pointer
+  display inline-block
+  height 4px
+  margin 1em 0 0 0
+  padding 1px 0
+  position relative
+  width 100%
+  &::selection
+    background transparent
+  &:hover
+    height 6px
+    padding 0
+    .position
+      visibility visible
+
+  .position
+    background $primaryColor
+    border-radius 50%
+    height 13px
+    left 0
+    margin -3px 0 0 -3px
+    position absolute
+    top 0
+    visibility hidden
+    width 13px
+  .progress
+    background $primaryColor
+    border-radius 5px
+    height 100%
+    width 0
+    z-index 2
+
+
+
+
+.current-list
+  border-top 1px solid $dividerColor
+  display block
+  flex 1 1 auto
+  position relative
+  width 300px
+  z-index 10
+
+  ul
+    list-style none
+    padding 0
+    margin 0
+    width 100%
+    li
+      border-bottom 1px solid $dividerColor
+      cursor pointer
+      padding .5em 1em
+      position relative
+      font-size 0.8em
+      &:hover
+        background rgba(0,0,0,0.2)
+        .remove
+          display block
+      &.active:before
+        background $fontColor
+        content ''
+        display block
+        height 100%
+        left 0
+        position absolute
+        top 0
+        width 2px
+
+      span
+        display block
+        white-space nowrap
+
+        &.track
+          font-size 1.2em
+      .remove
+        cursor pointer
+        display none
+        font-size 1.5em
+        height 1em
+        line-height 1em
+        margin-top -0.5em
+        position absolute
+        right 0.3em
+        top 50%
+        width 1em
+
+.current-list-empty
+  background no-repeat center 30%
+  background-image url('~client/img/logo.png')
+  bottom 0
+  opacity 0.1
+  position absolute
+  top 0
+  width 100%
+
+#player-container
+  background-color rgba(0,0,0, 0.4)
+  bottom 0
+  display flex
+  flex-flow column
+  position absolute
+  right 0px
+  top 0
+  width 300px
+  z-index 105
+  &.buffering
+    .play-loading
+      animation-play-state running
+      opacity 1
+
+
+
+.mini-player
+  display none
+
+.play-loading
+  animation loading 1s infinite linear
+  animation-play-state paused
+  border 4px transparent solid
+  border-radius 50%
+  border-top-color $primaryColor
+  display block
+  height 1.4em
+  left -6px
+  opacity 0
+  padding 2px
+  position absolute
+  top -6px
+  transition opacity 0.3s linear
+  width 1.4em
+
+
+
+
+@media $med_and_down
+  body.show-player
+    overflow hidden
+    #player-container
+      bodyGradient()
+      .player
+          transform translate3d(0, 0, 0)
+      .current-list
+        transform translate3d(100%,0,0)
+        &.show
+          transform translate3d(0,0,0)
+
+    .mini-player
+      transform translate3d(0, $miniPlayerHeight, 0)
+
+  #player-container
+    left 150%
+    top $headerHeight
+    position fixed
+    height 0
+
+    .player-content
+      padding-top 0
+
+    .player
+      bodyGradient()
+      bottom 0
+      left 0
+      position fixed
+      right 0
+      top 0
+      transform translate3d(0, 130%, 0)
+      transition transform 0.3s ease-out
+      width initial
+
+
+      .controls
+        font-size 1.5em
+
+      .cover
+        padding-top 80%
+        width 80%
+      .player-header
+        display block
+    .current-list
+      bottom 0%
+      left 0
+      position fixed
+      transform translate3d(100%, 130%, 0)
+      transition transform 0.3s ease-out
+      top $headerHeight
+      width 100%
+      &.show
+        transform translate3d(0, 130%, 0)
+
+      li
+        border-bottom 1px solid #D8D8D8
+        padding 1em
+
+  .mini-player
+    // background #f5f5f5
+    background-color rgba(0,0,0,0.5)
+    bottom 0
+    cursor pointer
+    display block
+    height $miniPlayerHeight
+    left 0
+    position fixed
+    transform translate3d(0, 0, 0)
+    transition transform 0.2s ease-out
+    width 100%
+    z-index 30
+
+    .play-pause
+      font-size 1.7em
+      line-height $miniPlayerHeight
+      padding 0 .5em
+      position absolute
+      right 0
+      top 0
+
+    .info
+      display block
+      height $miniPlayerHeight
+      left ($miniPlayerHeight + 10px)
+      line-height 1em
+      position absolute
+      right 3em
+      top 0
+      span
+        display block
+        height ($miniPlayerHeight/2)
+
+        &.title
+          line-height 42px
+        &.artist
+          font-size 0.8em
+          line-height 1.6em
+    .mini-cover
+      background-repeat no-repeat
+      background-size cover
+      display inline-block
+      height 0
+      padding-top $miniPlayerHeight
+      width $miniPlayerHeight

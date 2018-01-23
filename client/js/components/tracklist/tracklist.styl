@@ -1,0 +1,40 @@
+.track-list
+  border-collapse collapse
+  border-spacing 0px
+  font-size 12px
+  width 100%
+  th
+    text-align left
+  td, th
+    padding 1em
+  tr
+    border-bottom 1px solid $dividerColor
+
+  tbody tr:hover
+      background rgba(0,0,0,0.2)
+
+
+
+@media $med_and_down
+  #app-wrapper
+    .track-list
+      thead
+        display none
+      tr
+        display block
+        font-size 1em
+        padding 1em 3.5em 1em 1em
+        position relative
+        td
+          display block
+          padding 0
+          &.artist
+            font-size 0.9em
+          .piker
+            margin-top -0.75em
+            position absolute
+            right 1em
+            top 50%
+
+      .duration, .bitrate
+        display none
